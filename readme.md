@@ -1,6 +1,6 @@
 # AI_api – Prompt-to-AI Backend (FastAPI)
 
-This is a simple backend API that securely connects to an AI model (e.g., OpenAI GPT) to process user prompts and return generated responses. It is built with FastAPI and follows best practices for modular design, environment-based API key management, and optional conversation logging.
+This is a simple backend API that securely connects to an AI model (e.g., OpenAI GPT) to process user prompts and return generated responses. It is built with FastAPI.
 
 ---
 
