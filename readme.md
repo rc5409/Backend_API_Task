@@ -52,7 +52,8 @@ cd Backend_API_Task
 ### 2. Create and activate a virtual environment
 python -m venv AI_api
 AI_api\Scripts\activate    # Windows
-# OR
+
+OR
 source AI_api/bin/activate  # macOS/Linux
 
 ### 3. Create .env file
