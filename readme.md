@@ -20,8 +20,8 @@ This is a simple backend API that securely connects to an AI model (e.g., OpenAI
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/AI_api.git
-cd AI_api
+git clone https://github.com/rc5409/Backend_API_Task.git
+cd Backend_API_Task
 ```
 
 ### 2. Create and activate a virtual environment
