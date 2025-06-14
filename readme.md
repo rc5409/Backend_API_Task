@@ -64,7 +64,7 @@ source AI_api/bin/activate  # macOS/Linux
 cp .env.example .env
 ```
 
-Edit your `.env` file to add your OpenAI API key:
+Edit the `.env` file to add the OpenAI API key:
 
 ```
 OPENAI_API_KEY=sk-REPLACE_ME
