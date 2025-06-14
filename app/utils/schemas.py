@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
 class AskRequest(BaseModel):
-    prompt: str = Field(..., example="Translate hello to Spanish")
+    prompt: str = Field(..., example="Ask me Anything!")
 
 class AskResponse(BaseModel):
     id: str

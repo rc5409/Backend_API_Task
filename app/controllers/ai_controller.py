@@ -1,7 +1,7 @@
 from uuid import uuid4
 from datetime import datetime, timezone
 from app.services.openai_service import ask_openai
-from app.storage import log_conv
+from app.storage import log_conversation
 
 async def handle_prompt(prompt: str) -> dict:
     answer = await ask_openai(prompt)
@@ -11,5 +11,5 @@ async def handle_prompt(prompt: str) -> dict:
         "prompt": prompt,
         "answer": answer,
     }
-    log_conv(record)
+    log_conversation(record)
     return record

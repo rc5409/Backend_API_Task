@@ -2,14 +2,29 @@ from fastapi import FastAPI
 from app.routes.ai import router as ai_router
 
 app = FastAPI(
-    title="AI Backend Assessment",
-    description="Prompt in, OpenAI answer out",
-    version="1.0.0",
+    title="OpenAI APIs",
+    version="0.1.0",
+    description="FastAPI backend Application integrated with OpenAI API",
+    docs_url="/docs",
+    redoc_url=None,
 )
 
 app.include_router(ai_router)
 
 
+### old ###
+# from fastapi import FastAPI
+# from app.routes.ai import router as ai_router
+
+# app = FastAPI(
+#     title="AI Backend Assessment",
+#     description="Prompt in, OpenAI answer out",
+#     version="1.0.0",
+# )
+
+# app.include_router(ai_router)
+
+### test ###
 # app = FastAPI()
 
 # @app.get("/")

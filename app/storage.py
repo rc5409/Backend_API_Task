@@ -1,11 +1,10 @@
-_conversations: list[dict] = []
+conversation_log = []
 
-def log_conv(record: dict) -> None:
-    _conversations.append(record)
+def log_conversation(prompt, response):
+    conversation_log.append({"prompt": prompt, "response": response})
 
-def get_all() -> list[dict]:
-    return list(_conversations)
+def get_conversations():
+    return conversation_log
 
-def clear_all() -> None:
-    _conversations.clear()
-
+def clear_conversations():
+    conversation_log.clear()
