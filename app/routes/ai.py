@@ -20,12 +20,13 @@ def ask_any_question(data: QuestionInput):
 
 class TranslateInput(BaseModel):
     text: str
-    lang: str = "Spanish"
+    lang: str 
 
 @router.post("/translate")
 def translate(data: TranslateInput):
     if not data.text.strip():
         raise_invalid_input("Text to translate cannot be empty.")
+        raise_invalid_input("Language to translate into cannot be empty.")
     prompt = f'Translate the following text to {data.lang}: "{data.text}"'
     response = ask_openai(prompt)
     log_conversation(prompt, response)

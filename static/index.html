@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI API Interface</title>
+</head>
+<body>
+  <h1>Welcome to Ask-AI</h1>
+  <p>A basic UI interface to ask any question, translate and summarize text. Go to http://127.0.0.1:8000/docs for documentation of APIs.</p>
+
+  <h2>Ask Any Question</h2>
+  <form id="questionForm">
+    <input type="text" name="question" placeholder="Ask a question" required />
+    <button type="submit">Ask</button>
+  </form>
+
+  <h2>Translate</h2>
+  <form id="translateForm">
+    <input type="text" name="text" placeholder="Text to translate" required />
+    <input type="text" name="lang" placeholder="Language (e.g., French)" required />
+    <button type="submit">Translate</button>
+  </form>
+
+  <h2>Summarize</h2>
+  <form id="summarizeForm">
+    <input type="text" name="text" placeholder="Text to summarize" required />
+    <button type="submit">Summarize</button>
+  </form>
+  <h3 style="text-align:center;">Response</h3>
+  <p style="text-align:center;">The API outputs the following JSON.</p>
+  <pre id="output" style="
+  margin-top: 30px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+"></pre>
+
+<div style="text-align:center; margin-top: 20px;">
+    <button onclick="showConversations()">Show All Past Conversations</button>
+    <button onclick="deleteConversations()">Delete All Conversations</button>
+  </div>
+  
+
+  <script>
+    async function handleFormSubmit(event, url, extractData) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+      const json = extractData(formData);
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(json)
+      });
+      const data = await res.json();
+      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+    }
+
+    document.getElementById('translateForm').addEventListener('submit', e =>
+      handleFormSubmit(e, '/ask-ai/translate', fd => ({ text: fd.get('text'), lang: fd.get('lang') }))
+    );
+
+    document.getElementById('questionForm').addEventListener('submit', e =>
+      handleFormSubmit(e, '/ask-ai/ask_any_question', fd => ({ question: fd.get('question') }))
+    );
+
+    document.getElementById('summarizeForm').addEventListener('submit', e =>
+      handleFormSubmit(e, '/ask-ai/summarize', fd => ({ text: fd.get('text') }))
+    );
+    async function showConversations() {
+  const res = await fetch('/ask-ai/conversations');
+  const data = await res.json();
+  document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+}
+
+async function deleteConversations() {
+  const res = await fetch('/ask-ai/conversations', { method: 'DELETE' });
+  const data = await res.json();
+  document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+}
+  </script>
+</body>
+</html>
