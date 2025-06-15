@@ -50,17 +50,21 @@ cd Backend_API_Task
 ```
 
 ### 2. Create and activate a virtual environment
+```bash
 python -m venv AI_api
 AI_api\Scripts\activate    # Windows
-# OR
+```
+
+```bash
 source AI_api/bin/activate  # macOS/Linux
+```
 
 ### 3. Create .env file
 ```bash
 cp .env.example .env
 ```
 
-Edit your `.env` file to add your OpenAI API key:
+Edit the `.env` file to add the OpenAI API key:
 
 ```
 OPENAI_API_KEY=sk-REPLACE_ME
